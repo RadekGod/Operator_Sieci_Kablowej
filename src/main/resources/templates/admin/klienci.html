@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang = "pl" xmlns = "http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/klientStyle.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+<title>Klienci</title>
+</head>
+<body>
+<div class = "container">
+                <div class = "header">
+                    <div class = "navbar">
+                    <ul>
+                        <li><a href = "/admin/main">Strona główna</a></li>
+                        <li>Oferta
+                        <div class = "submenu-1">
+                                <ul>
+                                    <li><a href = "/admin/oferty_internet">Internet</a></li>
+                                    <li><a href = "/admin/oferty_telewizja">Telewizja</a></li>
+                                    <li><a href = "/admin/oferty_telefonia">Telefonia</a></li>
+                                </ul>
+                            </div>
+
+                        </li>
+                        <li><a href = "/admin/klienci">Klienci</a></li>
+                        <li><a href = "/admin/umowy">Umowy</a></li>
+                        <li><a href = "operatorData">O nas</a></li>
+                        <li>
+                            <b style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b>
+                            <div class = "submenu-1">
+                                <ul>
+                                    <li>
+                                        <form action = "#" th:action = "@{/perform_logout}" method = "post">
+                                        <button type = "submit" class = "logoutButton">Wyloguj</button>
+                                        </form>
+                                    </li>
+                                    <li><a href = "/admin/about_me">Moje dane</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+    <div class = "content">
+        <div class = "tableTitle">
+            <h1>Klienci</h1>
+        </div>
+        
+    <div class = "tableContainer">
+        <table class = "contentTable">
+        <thead>
+            <tr>
+                <th>Numer klienta</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Numer telefonu</th>
+                <th>Data dołączenia</th>
+                <th>Aktywna umowa</th>
+                <th>Numer dowodu</th>
+                <th>Numer PESEL</th>
+                <th>Numer paszportu</th>
+                <th>Numer operatora</th>
+                <th>Numer adresu</th>
+                <th>Adres e-mail</th>
+                <th>Hasło</th>
+                <th>Rola</th>
+                <th>Konto aktywne</th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each = "klient : ${klienciList}">
+                <td th:text = "${klient.nrKlienta}">Numer adresu</td>
+                <td th:text = "${klient.imie}">Imię</td>
+                <td th:text = "${klient.nazwisko}">Nazwisko</td>
+                <td th:text = "${klient.nrTelefonu}">Numer telefonu</td>
+                <td th:text = "${klient.dataDolaczenia}">Data dołączenia</td>
+                <td th:text = "${klient.aktywnaUmowa}">Aktywna umowa</td>
+                <td th:text = "${klient.nrDowodu}">Numer dowodu</td>
+                <td th:text = "${klient.pesel}">Numer PESEL</td>
+                <td th:text = "${klient.nrPaszportu}">Numer paszportu</td>
+                <td th:text = "${klient.nrOperatora}">Numer operatora</td>
+                <td th:text = "${klient.nrAdresu}">Numer adresu</td>
+                <td th:text = "${klient.email}">Adres e-mail</td>
+                <td th:text = "${klient.haslo}">Hasło</td>
+                <td th:text = "${klient.authority}">Rola</td>
+                <td th:text = "${klient.czyAktywne}">Konto aktywne</td>
+                    <td>
+                        <a th:href = "@{'/admin/edit_klient/' + ${klient.nrKlienta}}"><button type = "button" id = "editButton" class = "buttonx">
+                            <span class = "buttonText">Edytuj</span>
+                            <span class = "buttonIcon">
+                                <ion-icon name="create-outline"></ion-icon>
+                            </span>
+                            </button></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a th:href = "@{'/admin/delete_klient/' + ${klient.nrKlienta}}"><button type = "button" id = "deleteButton" class = "buttonx">
+                            <span class = "buttonText">Usuń</span>
+                            <span class = "buttonIcon">
+                                <ion-icon name="trash-outline"></ion-icon>
+                            </span>
+                            </button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <div class = "footer">
+    BDBT 2022, Operator sieci kablowej - Radosław Godlewski, Jakub Wojciechowski 
+    </div>
+</div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang = "pl" xmlns = "http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/editFormStyle.css">
+    <title>Edycja klienta</title>
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+</head>
+<body>
+    <div class = "container">
+                <div class = "header">
+                    <div class = "navbar">
+                    <ul>
+                        <li><a href = "/user/main">Strona główna</a></li>
+                        <li>Oferta
+                        <div class = "submenu-1">
+                                <ul>
+                                    <li><a href = "/user/oferty_internet">Internet</a></li>
+                                    <li><a href = "/user/oferty_telewizja">Telewizja</a></li>
+                                    <li><a href = "/user/oferty_telefonia">Telefonia</a></li>
+                                </ul>
+                            </div>
+
+                        </li>
+                        
+                        <li><a href = "/user/umowy_klient">Umowy</a></li>
+                        <li><a href = "operatorData">O nas</a></li>
+                        <li>
+                            <b style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b>
+                            <div class = "submenu-1">
+                                <ul>
+                                    <li><a href = "/perform_logout">Wyloguj</a></li>
+                                    <li><a href = "/user/about_me">Moje dane</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        
+    <div class = "mainContent">
+        <div class = "content">
+        <div class = "title">Edycja klienta</div>
+        <div class = "newForm">
+            <form action = "#" th:action = "@{/update_klient}" method = "post">
+                <div class = "selectDetails">
+                        <div class = "inputSelect">
+                            <span class = "selectTitle">Aktywne konto</span>
+                            <select id = "dodatkiDoUmowy" th:value = "${klient.czyAktywne}" name = "czyAktywne" required>
+                                <option value = "T">Tak</option>
+                                <option value = "N">Nie</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "userDetails">
+                    <div class = "inputBox">
+                        <span class = "details">Numer klienta</span>
+                        <input type = "Number" th:value = "${klient.nrKlienta}" name = "nrKlienta" readonly = "readonly" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Rola</span>
+                        <input type = "text" th:value = "${klient.authority}" name = "authority" readonly = "readonly" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Aktywna umowa</span>
+                        <input type = "text" th:value = "${klient.aktywnaUmowa}" name = "aktywnaUmowa" readonly = "readonly" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Imię</span>
+                        <input type = "text" th:value = "${klient.imie}" name = "imie" placeholder = "Podaj imię" readonly = "readonly" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Nazwisko</span>
+                        <input type = "text" th:value = "${klient.nazwisko}" name = "nazwisko" placeholder = "Podaj nazwisko" readonly = "readonly" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Numer telefonu</span>
+                        <input type = "Number" th:value = "${klient.nrTelefonu}" name = "nrTelefonu" placeholder = "Podaj numer telefonu (11 cyfr)" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Seria i numer dowodu osobistego</span>
+                        <input type = "Number" th:value = "${klient.nrDowodu}" name = "nrDowodu" placeholder = "Podaj serię i numer dowodu osobistego" readonly = "readonly">
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Numer PESEL</span>
+                        <input type = "Number" th:value = "${klient.pesel}" name = "pesel" placeholder = "Podaj numer PESEL" readonly = "readonly">
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Numer paszportu</span>
+                        <input type = "text" th:value = "${klient.nrPaszportu}" name = "nrPaszportu" placeholder = "Podaj numer paszportu" readonly = "readonly">
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Adres e-mail</span>
+                        <input type = "text" th:value = "${klient.email}" name = "email" placeholder = "Podaj adres e-mail" readonly = "readonly" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Hasło</span>
+                        <input type = "Password" th:value = "${klient.haslo}" name = "haslo" placeholder = "Podaj hasło" required>
+                    </div>
+                        <input type = "hidden" th:value = "${klient.nrAdresu}" name = "nrAdresu" placeholder = "Opisz generację telefonii">
+                    <div class = "inputBox">
+                        <span class = "details">Miasto</span>
+                        <input type = "text" th:value = "${adres.miasto}" name = "miasto" placeholder = "Podaj nazwę miasta" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Ulica</span>
+                        <input type = "text" th:value = "${adres.ulica}" name = "ulica" placeholder = "Podaj nazwę ulicy" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Numer domu</span>
+                        <input type = "Number" th:value = "${adres.nrDomu}" name = "nrDomu" placeholder = "Podaj numer domu" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Numer lokalu</span>
+                        <input type = "Number" th:value = "${adres.nrLokalu}" name = "nrLokalu" placeholder = "Podaj numer lokalu">
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Kod pocztowy</span>
+                        <input type = "text" th:value = "${poczta.kodPocztowy}" name = "kodPocztowy" placeholder = "Podaj kod pocztowy" required>
+                    </div>
+                    <div class = "inputBox">
+                        <span class = "details">Poczta</span>
+                        <input type = "text" th:value = "${poczta.poczta}" name = "poczta" placeholder = "Podaj miejscowość, w której znajduje się poczta" required>
+                    </div>
+                </div>
+                <div class = "confirmButton">
+                <input type = "submit" value = "Uaktualnij dane">
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+        <div class = "footer">
+            BDBT 2022, Operator sieci kablowej - Radosław Godlewski, Jakub Wojciechowski 
+        </div>
+</div>      
+</body>
+
+
+</html>
